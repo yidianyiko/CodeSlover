@@ -2,6 +2,7 @@ class Solution {
 public:
     stack<int> st;
     bool isValid(string s) {
+        
         for(int i = 0; i<s.size();i++){
             switch(s[i]){
                 case '(': 
