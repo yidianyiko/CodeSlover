@@ -11,4 +11,24 @@ public:
     int maxDepth(TreeNode* root){
         return getDepth(root);
     }
-}
+
+    int maxDepth(TreeNode* root){
+        queue<TreeNode*> que;
+        if(root!=NULL){
+            que.push(root);
+        }
+        int depth = 0;
+        while(!que.empty()){
+            int size = que.size();
+            vector<int> vec;
+            for(int i = 0; i <size;i++){
+                Node* node = que.front();
+                que.pop();
+                for(int j = 0; j<children.size();j++){
+                    if(node->children[j]) que.push(node.children[j]);
+                }
+            }
+        }
+        return depth;
+    }
+};
