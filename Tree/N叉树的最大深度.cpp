@@ -1,34 +1,54 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> children;
+
+    Node() {}
+
+    Node(int _val) {
+        val = _val;
+    }
+
+    Node(int _val, vector<Node*> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
 class Solution {
 public:
-    int getDepth(TreeNode* Node){
+    //递归
+    int getDepth(Node *node){
         if(node == NULL) return 0;
-        int depth =0;
-        for(int i = 0; i<root->children.size();i++){
-            depth = max(depth, getDepth(root->children[i]));
+        int depth = 0;
+        for(int i = 0; i<node->children.size(); i++){
+            depth = max(depth,getDepth(node->children[i]));
         }
         return depth+1;
     }
-    int maxDepth(TreeNode* root){
+    int maxDepth(Node* root) {
         return getDepth(root);
     }
-
-    int maxDepth(TreeNode* root){
-        queue<TreeNode*> que;
-        if(root!=NULL){
-            que.push(root);
-        }
+    //迭代
+    int maxDepth(Node* root){
         int depth = 0;
+        queue<Node*> que;
+        if(root != NULL) que.push(root);
         while(!que.empty()){
             int size = que.size();
-            vector<int> vec;
-            for(int i = 0; i <size;i++){
+            depth++;
+            for(int i = 0; i< size; i++){
                 Node* node = que.front();
                 que.pop();
-                for(int j = 0; j<children.size();j++){
-                    if(node->children[j]) que.push(node.children[j]);
+                for(int j = 0; j < node->children.size();j++){
+                    if(node->children[j]) que.push(node->children[j]);
                 }
             }
         }
         return depth;
+
     }
 };
